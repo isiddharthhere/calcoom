@@ -32,7 +32,6 @@
         document.getElementById('splash').classList.add('hidden');
         document.getElementById('app').classList.remove('hidden');
       }, 3000);
-
       document.addEventListener('keydown', (e) => {
         if (sessionOver) return;
         if (e.key === 'Enter') submitAnswer();
@@ -42,19 +41,16 @@
         }
       });
     };
-
     function playSound(id) {
       const sound = document.getElementById(id);
       if (sound) sound.play();
     }
-
     function showFeedback(type) {
       const player = document.getElementById('feedbackAnim');
       player.setAttribute('src', type === 'correct' ? correctAnim : wrongAnim);
       player.classList.remove('hidden');
       setTimeout(() => player.classList.add('hidden'), 1500);
     }
-
     function playLogoAnim() {
       const anim = splashAnimations[Math.floor(Math.random() * splashAnimations.length)];
       const logo = document.getElementById('feedbackAnim');
@@ -62,12 +58,10 @@
       logo.classList.remove('hidden');
       setTimeout(() => logo.classList.add('hidden'), 2000);
     }
-
     function setOperation(op) {
       currentOperation = op;
       renderQuestion();
     }
-
     function startSession(level) {
       questions = [];
       sessionOver = false;
@@ -82,7 +76,6 @@
       attempts = 0;
       renderQuestion();
     }
-
     function renderQuestion() {
       if (currentIndex >= questions.length) return;
       const q = questions[currentIndex];
@@ -92,7 +85,6 @@
       timeLeft = 30;
       startTimer();
     }
-
     function getCorrectAnswer(q) {
       switch (currentOperation) {
         case '+': return q.a + q.b;
@@ -101,7 +93,6 @@
         case '/': return +(q.a / q.b).toFixed(2);
       }
     }
-
     function submitAnswer() {
       clearInterval(timer);
       const q = questions[currentIndex];
@@ -119,7 +110,6 @@
         playSound('wrongSound');
       }
     }
-
     function nextQuestion() {
       clearInterval(timer);
       currentIndex++;
@@ -129,7 +119,6 @@
         endSession();
       }
     }
-
     function startTimer() {
       clearInterval(timer);
       document.getElementById('timer').innerText = `⏱ Time Left: 00:${timeLeft}`;
@@ -144,7 +133,6 @@
         }
       }, 1000);
     }
-
     function endSession() {
       sessionOver = true;
       document.getElementById('app').style.display = 'none';
@@ -154,4 +142,3 @@
   </script>
 </body>
 </html>
-
